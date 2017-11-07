@@ -25,4 +25,11 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Home)
+const Connected = connect(
+    mapStateToProps,
+)(Home)
+
+Connected.fetchData = (store) => {
+    return store.dispatch(loadPosts())
+}
+export default Connected
