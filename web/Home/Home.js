@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PostList from '../Posts/PostList'
+import { loadPosts } from '../actions'
 
 class Home extends React.Component {
-    state = { data: null, isLoading: false }
     componentDidMount() {
-        this.props.loadPosts()
+        this.props.dispatch(loadPosts())
     }
 
     render() {
@@ -25,16 +25,4 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        loadPosts: () => {
-            dispatch({
-                type: 'LOAD_POSTS',
-                payload: fetch('https://jsonplaceholder.typicode.com/posts?userId=1')
-                    .then(d => d.json())
-            })
-        }
-    }
-
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps)(Home)
