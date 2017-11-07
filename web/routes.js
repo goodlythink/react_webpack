@@ -1,15 +1,31 @@
 import App from './App/App'
-import Home from './Home/Home'
-import Thor from './Thor/Thor'
-import ErrorPage from './ErrorPage'
 
+function loadRoute(cb) {
+    return (module) => {
+        cb(null, module.default)
+    }
+}
 const routes = {
     path: '/',
     component: App,
-    indexRoute: { component: Home },
+    indexRoute: {
+        getComponent(nextState, cb) {
+            import('./Home/Home.js').then(loadRoute(cb))
+        }
+    },
     childRoutes: [
-        { path: 'thor', component: Thor },
-        { path: '*', component: ErrorPage }
+        {
+            path: 'thor',
+            getComponent(nextState, cb) {
+                import('./Thor/Thor.js').then(loadRoute(cb))
+            }
+        },
+        {
+            path: '*',
+            getComponent(nextState, cb) {
+                import('./ErrorPage.js').then(loadRoute(cb))
+            }
+        }
     ]
 }
 

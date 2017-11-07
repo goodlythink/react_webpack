@@ -15,6 +15,7 @@ module.exports = {
     },
     output: {
         filename: 'js/[name].[chunkhash].js',
+        chunkFilename: 'js/[name].[chunkhash].chunk.js',
         path: paths.build,
         publicPath: '/build/',
     },
@@ -45,6 +46,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'manifest'],
             minChunks: Infinity
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            children: true,
+            async: true,
+            minChunks: 10
         }),
         new ExtractTextPlugin({
             filename: 'css/[name].[contenthash].css',
