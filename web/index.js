@@ -7,7 +7,7 @@ import routes from './routes'
 import configureStore from './configureStore'
 
 
-const store = configureStore()
+const store = configureStore({preloadState: window.__REDUXDATA__})
 
 match(
     { history: browserHistory, routes },

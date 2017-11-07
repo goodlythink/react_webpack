@@ -69,6 +69,7 @@
     "redux": "^3.7.2",
     "redux-promise-middleware": "^4.2.1",
     "redux-thunk": "^2.2.0",
+    "serialize-javascript": "^1.4.0",
     "serve-favicon": "^2.4.5"
   },
   "devDependencies": {

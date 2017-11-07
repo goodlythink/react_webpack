@@ -8,7 +8,7 @@ export function loadPosts() {
     }
 }
 
-function fetchPosts() {
+export function fetchPosts() {
     return {
         type: 'LOAD_POSTS',
         payload: fetch('https://jsonplaceholder.typicode.com/posts?userId=1')

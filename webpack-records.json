@@ -216,7 +216,11 @@
       "node_modules/lodash-es/_baseGetTag.js": "wqbf",
       "node_modules/redux/es/combineReducers.js": "x52Y",
       "node_modules/react-redux/es/connect/connect.js": "yyvF",
-      "node_modules/symbol-observable/lib/ponyfill.js": "zzRL"
+      "node_modules/symbol-observable/lib/ponyfill.js": "zzRL",
+      "node_modules/redux-thunk/lib/index.js": "4ufr",
+      "node_modules/redux-promise-middleware/dist/index.js": "EBT9",
+      "node_modules/babel-loader/lib/index.js??ref--0-0!web/actions.js": "nSrI",
+      "node_modules/redux-promise-middleware/dist/isPromise.js": "t/fv"
     },
     "usedIds": {
       "0": 0,
@@ -434,7 +438,11 @@
       "wqbf": "wqbf",
       "x52Y": "x52Y",
       "yyvF": "yyvF",
-      "zzRL": "zzRL"
+      "zzRL": "zzRL",
+      "4ufr": "4ufr",
+      "EBT9": "EBT9",
+      "nSrI": "nSrI",
+      "t/fv": "t/fv"
     }
   },
   "chunks": {
