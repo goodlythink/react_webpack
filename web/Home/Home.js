@@ -5,10 +5,6 @@ import PostList from '../Posts/PostList'
 class Home extends React.Component {
     state = { data: null, isLoading: false }
     componentDidMount() {
-        // this.setState({ isLoading: true })
-        // fetch('https://jsonplaceholder.typicode.com/posts?userId=1')
-        //     .then(d => d.json())
-        //     .then(response => this.setState({ data: response, isLoading: false }))
         this.props.loadPosts()
     }
 
@@ -17,7 +13,7 @@ class Home extends React.Component {
         return (
             <div>
                 <h1>Lastes Posts</h1>
-                <PostList data={posts} />
+                <PostList data={posts.data} />
             </div>
         )
     }
