@@ -19,7 +19,7 @@ class Thor extends React.Component{
 
 function mapStateToProps(state) {
     return {
-        count: state
+        count: state.counter
     }
 }
 
