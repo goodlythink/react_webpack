@@ -1,24 +1,33 @@
 import React from 'react'
-import { connect } from 'react-redux'
+//import { connect } from 'react-redux'
+import { gql, graphql } from 'react-apollo'
 import PostList from '../Posts/PostList'
-import { loadPosts } from '../actions'
+// import { loadPosts } from '../actions'
 
 class Home extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(loadPosts())
-    }
+    // componentDidMount() {
+    //     this.props.dispatch(loadPosts())
+    // }
 
     render() {
-        const { posts } = this.props
+        //const { posts } = this.props
+        const { data: { viewer, error, loading } } = this.props
+        if (error) {
+            return (
+                <div>Error</div>
+            )
+        }
         return (
             <div>
                 <h1>Lastes Posts</h1>
-                <PostList data={posts.data} />
+                {loading && <div>Loading...</div>}
+                {viewer && <PostList data={viewer.posts} />}
             </div>
         )
     }
 }
 
+/*
 function mapStateToProps(state) {
     return {
         posts: state.posts
@@ -32,4 +41,16 @@ const Connected = connect(
 Connected.fetchData = (store) => {
     return store.dispatch(loadPosts())
 }
-export default Connected
+*/
+
+const Container = graphql(gql`
+    query {
+        viewer{
+            posts{
+                title
+                description
+            }
+        }
+    }
+`)(Home)
+export default Container
