@@ -4,15 +4,8 @@ import ReactDOM from 'react-dom'
 import { match, Router, browserHistory } from 'react-router'
 import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo'
 
-// import { Provider } from 'react-redux'
 import routes from './routes'
 import configureStore from './configureStore'
-
-
-//const store = configureStore({preloadState: window.__REDUXDATA__})
-//ไม่ได้ใช้ store ของ redux เนื่องจาก Apollo สร้าง Store ของมันเอง
-
-
 
 
 const networkInterface = createNetworkInterface({
