@@ -1,19 +1,44 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+// import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+// import promiseMiddleware from 'redux-promise-middleware'
+// import * as reducers from './reducers'
+// import thunk from 'redux-thunk'
+
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
-import reducers from './reducers'
+import * as reducers from './reducers.js'
 import thunk from 'redux-thunk'
 
-const composeEnhancers = typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-    }) : compose;
 
-export default function configureStore({ preloadState } = {}) {
+const composeEnhancers = (
+    typeof window !== 'undefined' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+) || compose
+
+/*
+export default function configureStore({ preloadState,client } = {}) {
     const store = createStore(
-        reducers,
+        combineReducers({
+            ...reducers,
+            apollo: client.reducer()
+        }),
         preloadState,
         composeEnhancers(
-            applyMiddleware(thunk, promiseMiddleware())
+            applyMiddleware(client.middleware(), thunk, promiseMiddleware())
+        )
+    )
+    return store
+}
+*/
+
+export default function configureStore({ preloadState, client } = {}) {
+    const store = createStore(
+        combineReducers({
+            ...reducers,
+            apollo: client.reducer()
+        }),
+        preloadState,
+        composeEnhancers(
+            applyMiddleware(client.middleware(), thunk, promiseMiddleware()),
         )
     )
     return store

@@ -47,6 +47,7 @@ const Container = graphql(gql`
     query {
         viewer{
             posts{
+                id
                 title
                 description
             }

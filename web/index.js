@@ -13,17 +13,23 @@ import configureStore from './configureStore'
 //ไม่ได้ใช้ store ของ redux เนื่องจาก Apollo สร้าง Store ของมันเอง
 
 
+
+
+const networkInterface = createNetworkInterface({
+    uri: 'http://localhost:8000/api/graphql',
+})
+
 const client = new ApolloClient({
-    networkInterface: createNetworkInterface({
-      uri: 'http://localhost:8000/api/graphql',
-    }),
-  });
+    networkInterface
+})
+
+const store = configureStore({ preloadState: window.__REDUXDATA__, client })
 
 match(
     { history: browserHistory, routes },
     (error, redirectLocation, renderProps) => {
         ReactDOM.render(
-            <ApolloProvider client={client}>
+            <ApolloProvider client={client} store={store}>
                 <Router {...renderProps} />
             </ApolloProvider>,
             document.getElementById('app')

@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux'
+//import { combineReducers } from 'redux'
 
 // (state, action) => state
-function counter(state = 0, action) {
+export function counter(state = 0, action) {
     switch (action.type) {
         case 'INCREMENT':
             return state + 1
@@ -12,7 +12,7 @@ function counter(state = 0, action) {
     }
 }
 
-function posts(state = {}, action) {
+export function posts(state = {}, action) {
     switch (action.type) {
         case 'LOAD_POSTS_PENDING':
             return {
@@ -35,9 +35,10 @@ function posts(state = {}, action) {
     }
 }
 
-const reducers = combineReducers({
-    counter,
-    posts
-})
 
-export default reducers
+// const reducers = combineReducers({
+//     counter,
+//     posts
+// })
+
+// export default reducers
